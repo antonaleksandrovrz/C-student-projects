@@ -1,0 +1,150 @@
+using System;
+using System.Collections.Generic;
+
+namespace SugarHighAssign
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            #region Arrays and Lists
+
+            int[] arrayOfCandies = null; //it's null because we don't know the size
+            List<int> result = new List<int>(); //used later for the result
+
+            #endregion
+
+            #region Saved Numbers
+
+            int candiesNumber = 0;
+            int threshold = 0;
+
+            #endregion
+
+            #region Input
+
+            Input(ref candiesNumber,"How much candies do you have?-"," Use a number!"); //instead of using the same code many times, I made a method with ref type
+            Input(ref threshold, "Threshold input - "," Use a number!"); //Same here
+
+            arrayOfCandies = new int[candiesNumber]; //now I know the size of the array 
+            for (int i = 0; i < candiesNumber; i++) //loop for filling the candie array
+            {
+                Input(ref arrayOfCandies[i], ("Candy[" + i + "]="), "Use a number");
+            }
+
+            #endregion
+
+            #region Output
+
+            //Show our current array.
+            Console.Write("Your current candy array: ----> candies["); //it's faster to output it here
+            for (int i = 0; i < arrayOfCandies.Length; i++) //loop through the array of candies 
+            {
+
+                Console.Write(arrayOfCandies[i]);
+                if (i == arrayOfCandies.Length - 1) Console.WriteLine("]"); //if it's the last element, output the end of the scoop
+                else Console.Write(",");
+
+            }
+
+            int[] SortedCopyOfTheCandyArray = new int[arrayOfCandies.Length]; //I will need a copy of the array to save the index position
+            Array.Copy(arrayOfCandies, SortedCopyOfTheCandyArray, arrayOfCandies.Length); //array.copy is the faster way to do it
+            Array.Sort(SortedCopyOfTheCandyArray); //Sort the array from the smaller ones to the bigger ones
+
+            int sum = 0; // this is obvious :D
+
+            for (int i = 0; i < SortedCopyOfTheCandyArray.Length; i++) //loop trough the sorted array
+            {
+
+                if (sum + SortedCopyOfTheCandyArray[i] < threshold) //if the sum is still < threshold continue to add
+                {
+                    sum += SortedCopyOfTheCandyArray[i]; //add to sum
+                    result.Add(SortedCopyOfTheCandyArray[i]); //save it to the final result
+
+                }
+
+                else
+                {
+                    break; //if the sum > threshold, break the loop. There is no reason to continue looping
+                }
+            }
+
+            
+            List<int> finalOutput = new List<int>(); //ofcorse we have to output the index instead of their value, so I need 
+                                                    //another list to check the equal numbers from the original array
+            sum = 0; //obvious
+
+            foreach (var item in result) //the idea here is to make a quick check for the position of the values
+            {   
+                for (int i = 0; i < arrayOfCandies.Length; i++)
+                {
+                    if (item == arrayOfCandies[i])
+                    {
+                        sum += arrayOfCandies[i]; //I am tracking the sum to be smaller then threshold because, 
+                                                  //it can contain equal numbers but with diffrent positions
+
+                        if (sum < threshold)
+                        {
+                            finalOutput.Add(i); 
+                        }
+
+                        else
+                        {
+                            break; 
+                        }
+                    }
+                }
+            }
+
+            finalOutput.Sort(); //Sort the final ouput 
+            bool firstOutputedNumber = true;
+
+            //Output the final result
+            Console.Write("sugarHigh(candies, threshold) = [");
+            foreach (var item in finalOutput)
+            {
+                if (firstOutputedNumber)
+                {
+                    Console.Write(item);
+                    firstOutputedNumber = false;
+                }
+
+                else
+                {
+                    Console.Write("," + item);
+                }
+            }
+            Console.Write("]");
+            Console.ReadKey(); //keep the console openn
+
+            #endregion
+        }
+
+        static void Input(ref int input,string FirstMessage,string SecondMessage)
+        {
+            Console.Write(FirstMessage);
+            bool canBeParsed = false; //test bool
+            do
+            {
+                canBeParsed = Int32.TryParse(Console.ReadLine(), out input); //Try to parse the string from the console input to int number
+                //if it fails
+                if (!canBeParsed)
+                {
+                    Console.WriteLine("Error: Wrong input type! " + SecondMessage);
+                    Console.Write(FirstMessage);
+                }
+
+                else
+                {
+                    if(input < 0) // quick check if the number is > 0 
+                    {
+                        Console.Write("Error: The number should be bigger then 0! " + FirstMessage);
+                        canBeParsed = false;
+                    }
+                }
+                
+            } while (!canBeParsed);
+
+        }
+    }
+}
