@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MarketStoreDiscount
 {
-    public enum CardDiscount //used to specify the coupons easier
+    public enum CardDiscount //used to determine what kind it is the card
     {
         Gold,
         Silver,
@@ -13,14 +13,14 @@ namespace MarketStoreDiscount
     class PayDesk
     {
         static float turnoverPrevMonth = 0; //static - because they are used in the static method for output
-        static float discountRate = 0;
+        static float discountRate = 0;  //members are private - because we don't want unwanted access 
         static float purchaseValue = 0;
         private CardDiscount cardDiscount; //to check the payment we need the coupons too
         
 
-        public PayDesk(CardDiscount CardDiscount, float TurnoverPrevMonth) //Created Object must have the whole information
+        public PayDesk(CardDiscount CardDiscount, float TurnoverPrevMonth) //To create an object we need only cardtype and turnover
         {
-            turnoverPrevMonth = TurnoverPrevMonth; //instantiating the static members
+            turnoverPrevMonth = TurnoverPrevMonth; //assigning values to the main members
             cardDiscount = CardDiscount
 
 
@@ -67,7 +67,7 @@ namespace MarketStoreDiscount
             Console.WriteLine("--------------------------------------------------------------------");
         }
 
-        public static void Output(float purchaseValue) //output the final result. Static methods let us use them without 
+        public static void Output(float purchaseValue) //output the final result.
         {
             Console.WriteLine("Purchase value: $" + String.Format("{0:n}", purchaseValue)); //string.fomat is used to print the value with comma
 
