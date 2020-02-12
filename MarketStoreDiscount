@@ -27,9 +27,12 @@ namespace MarketStoreDiscount
 
     
             int tempInputTurnover = 0;
-            Input(ref tempInputTurnover, "Turnover from the last month -", "Use integer number");
             int tempInputPurchaseValue = 0;
+            
+            Input(ref tempInputTurnover, "Turnover from the last month -", "Use integer number");
+            
             Input(ref tempInputPurchaseValue, "Purchase value -", "Use integer number");
+            
             Console.WriteLine("--------------------------------------------------------------------");
             PayDesk Anton = new PayDesk(tempCoupon, tempInputTurnover); //when we have all the required info for the object we instantiate it
             PayDesk.Output(tempInputPurchaseValue); //used to print the result
