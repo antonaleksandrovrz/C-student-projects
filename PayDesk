@@ -1,0 +1,81 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace MarketStoreDiscount
+{
+    public enum CardDiscount
+    {
+        Gold,
+        Silver,
+        Bronze
+    }
+    class PayDesk
+    {
+        static float turnoverPrevMonth = 0;
+        static float discountRate = 0;
+        static float purchaseValue = 0;
+        private CardDiscount cardDiscount;
+        
+
+        public PayDesk(CardDiscount CardDiscount, float TurnoverPrevMonth, float PurchaseValue)
+        {
+            turnoverPrevMonth = TurnoverPrevMonth;
+            cardDiscount = CardDiscount;
+            purchaseValue = PurchaseValue;
+
+            switch (cardDiscount)
+            {
+                case CardDiscount.Gold:
+                    discountRate = 2;
+                    float addedDiscount = turnoverPrevMonth / 100;
+                    if (addedDiscount < 10 )
+                    {
+                        if ((discountRate + addedDiscount) < 10) discountRate += addedDiscount;
+                        else discountRate = 10;
+                    }
+                    else
+                    {
+                        discountRate = 10;
+                    }
+                    break;
+
+                case CardDiscount.Silver:
+                    discountRate = 2;
+                    if (turnoverPrevMonth > 300)
+                    {
+                        discountRate = 3.5f;
+                    }
+                    break;
+
+                case CardDiscount.Bronze:
+                    
+                    if (100 <= turnoverPrevMonth && turnoverPrevMonth <= 300)
+                    {
+                        discountRate = 1;
+                    }
+
+                    else if(turnoverPrevMonth > 300)
+                    {
+                        discountRate = 2.5f;
+                    }
+                    break;
+            }
+
+            Console.WriteLine("Current data:" + " Coupon:" + cardDiscount + ", turnover $" + turnoverPrevMonth + "$, purchase value: " + purchaseValue + "$" );
+            Console.WriteLine("--------------------------------------------------------------------");
+        }
+
+        public static void Output()
+        {
+            Console.WriteLine("Purchase value: $" + String.Format("{0:n}", purchaseValue));
+
+            Console.WriteLine("Discount rate: " + String.Format("{0:n}", discountRate) + "%");
+
+            Console.WriteLine("Discount: $" + String.Format("{0:n}", purchaseValue * discountRate / 100));
+
+            Console.WriteLine("Total: $" + String.Format("{0:n}", ( purchaseValue - (purchaseValue * discountRate/100) )));
+        }
+        
+    }
+}
