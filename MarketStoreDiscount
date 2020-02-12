@@ -1,0 +1,70 @@
+using System;
+
+namespace MarketStoreDiscount
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            CardDiscount tempCoupon;
+            tempCoupon = CardDiscount.Bronze;
+
+            int tempInputCoupon = 0;
+            Input(ref tempInputCoupon, "Coupon: 1.Gold , 2.Silver, 3.Bronze -", "Choose a number");
+
+            switch (tempInputCoupon)
+            {
+                case 1:
+                    tempCoupon = CardDiscount.Gold;
+                    break;
+                case 2:
+                    tempCoupon = CardDiscount.Silver;
+                    break;
+                case 3:
+                    tempCoupon = CardDiscount.Bronze;
+                    break;
+            }
+
+            Console.Write("Turnover from the last month -");
+            int tempInputTurnover = 0;
+            Input(ref tempInputTurnover, "Turnover from the last month -", "Use integer number");
+            int tempInputPurchaseValue = 0;
+            Input(ref tempInputPurchaseValue, "Purchase value -", "Use integer number");
+            Console.WriteLine("--------------------------------------------------------------------");
+            PayDesk Anton = new PayDesk(tempCoupon, tempInputTurnover, tempInputPurchaseValue);
+            PayDesk.Output();
+            
+
+            Console.ReadKey();
+
+
+        }
+
+        static void Input(ref int input, string FirstMessage, string SecondMessage)
+        {
+            Console.Write(FirstMessage);
+            bool canBeParsed = false; //test bool
+            do
+            {
+                canBeParsed = Int32.TryParse(Console.ReadLine(), out input); //Try to parse the string from the console input to int number
+                //if it fails
+                if (!canBeParsed)
+                {
+                    Console.WriteLine("Error: Wrong input type! " + SecondMessage);
+                    Console.Write(FirstMessage);
+                }
+
+                else
+                {
+                    if (input < 0) // quick check if the number is > 0 
+                    {
+                        Console.Write("Error: The number should be bigger then 0! " + FirstMessage);
+                        canBeParsed = false;
+                    }
+                }
+
+            } while (!canBeParsed);
+
+        }
+    }
+}
