@@ -1,0 +1,83 @@
+using System;
+
+namespace MM_Logo_Assigment
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int letter_Width = int.Parse(Console.ReadLine());
+
+            PrintMM();
+          
+            void PrintMM()
+            {
+                int mid_LinePosition = (letter_Width + 1) / 2;
+                //found how much lines we have
+                for (int linePosition = 0; linePosition < letter_Width + 1; linePosition++)
+                {
+                    //if it's the top fragment
+                    if (linePosition < mid_LinePosition)
+                    {
+                        PrintTop(linePosition);
+                    }
+                    //if it's the bottom fragment
+                    else
+                    {
+                        PrintBottom(linePosition);
+                    }
+                    //end the line
+                    Console.WriteLine();
+                }
+            }
+
+            void PrintTop(int line_Position)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    //leftFragment
+                    PrintString(letter_Width - line_Position, '-');
+                    PrintString(letter_Width + line_Position * 2, '*');
+                    //MidSpace
+                    PrintString(letter_Width - line_Position * 2, '-');
+                    //rightFragment
+                    PrintString(letter_Width + line_Position * 2, '*');
+                    PrintString(letter_Width - line_Position, '-');
+                }
+            }
+
+            void PrintBottom(int line_Position)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    //leftFragment
+                    PrintString(letter_Width - line_Position, '-');
+                    PrintString(letter_Width, '*');
+
+                    //MidFragment
+                    int space = line_Position * 2 - letter_Width;
+                    PrintString(space, '-');
+                    PrintString(letter_Width * 2 - space, '*');
+                    PrintString(space, '-');
+
+                    //RightFragment
+                    PrintString(letter_Width, '*');
+                    PrintString(letter_Width - line_Position, '-');
+                }
+            }
+
+            void PrintString(int length, char symbol)
+            {
+                for (int i = 0; i < length; i++)
+                {
+                    Console.Write(symbol);
+                }
+            }
+
+
+
+
+
+        }
+    }
+}
