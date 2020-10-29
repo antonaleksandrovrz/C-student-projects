@@ -1,0 +1,13 @@
+C:\Users\Nadya\source\repos\MarketStore\MarketStore\bin\Debug\netcoreapp3.1\MarketStore.exe
+C:\Users\Nadya\source\repos\MarketStore\MarketStore\bin\Debug\netcoreapp3.1\MarketStore.deps.json
+C:\Users\Nadya\source\repos\MarketStore\MarketStore\bin\Debug\netcoreapp3.1\MarketStore.runtimeconfig.json
+C:\Users\Nadya\source\repos\MarketStore\MarketStore\bin\Debug\netcoreapp3.1\MarketStore.runtimeconfig.dev.json
+C:\Users\Nadya\source\repos\MarketStore\MarketStore\bin\Debug\netcoreapp3.1\MarketStore.dll
+C:\Users\Nadya\source\repos\MarketStore\MarketStore\bin\Debug\netcoreapp3.1\MarketStore.pdb
+C:\Users\Nadya\source\repos\MarketStore\MarketStore\obj\Debug\netcoreapp3.1\MarketStore.csprojAssemblyReference.cache
+C:\Users\Nadya\source\repos\MarketStore\MarketStore\obj\Debug\netcoreapp3.1\MarketStore.AssemblyInfoInputs.cache
+C:\Users\Nadya\source\repos\MarketStore\MarketStore\obj\Debug\netcoreapp3.1\MarketStore.AssemblyInfo.cs
+C:\Users\Nadya\source\repos\MarketStore\MarketStore\obj\Debug\netcoreapp3.1\MarketStore.csproj.CoreCompileInputs.cache
+C:\Users\Nadya\source\repos\MarketStore\MarketStore\obj\Debug\netcoreapp3.1\MarketStore.dll
+C:\Users\Nadya\source\repos\MarketStore\MarketStore\obj\Debug\netcoreapp3.1\MarketStore.pdb
+C:\Users\Nadya\source\repos\MarketStore\MarketStore\obj\Debug\netcoreapp3.1\MarketStore.genruntimeconfig.cache

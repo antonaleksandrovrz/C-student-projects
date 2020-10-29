@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Nadya\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Nadya\\.nuget\\packages"
+    ]
+  }
+}
